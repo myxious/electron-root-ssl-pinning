@@ -1,0 +1,67 @@
+{
+  "name": "electron-root-ssl-pinning",
+  "version": "0.1.0",
+  "description": "Pinning root CA certificates into your Electron app",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "repository": "https://github.com/myxious/electron-root-ssl-pinning.git",
+  "author": "Aydar Sultanov <aydarsultanov90@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "prepublishOnly": "yarn lint && yarn test",
+    "build": "yarn tsc",
+    "build:watch": "yarn tsc --watch",
+    "format": "yarn prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
+    "lint": "yarn tslint --project \"./tsconfig.json\"",
+    "test": "yarn jest"
+  },
+  "keywords": [
+    "electron",
+    "https",
+    "root",
+    "ca",
+    "cert",
+    "certificate",
+    "pinning",
+    "ssl"
+  ],
+  "dependencies": {
+    "lodash.flow": "^3.5.0",
+    "n-readlines": "^1.0.0",
+    "node-forge": "^0.8.5"
+  },
+  "devDependencies": {
+    "@jest-runner/electron": "^2.0.2",
+    "@types/jest": "^24.0.17",
+    "@types/lodash.flow": "^3.5.6",
+    "@types/node": "^12.7.2",
+    "@types/node-forge": "^0.8.6",
+    "electron": "^6.0.2",
+    "husky": "^3.0.4",
+    "jest": "^24.9.0",
+    "jest-date-mock": "^1.0.7",
+    "prettier": "^1.18.2",
+    "ts-jest": "^24.0.2",
+    "tslint": "^5.18.0",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^3.5.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "yarn lint"
+    }
+  },
+  "files": [
+    "lib/**/*"
+  ],
+  "jest": {
+    "projects": [
+      "tests/e2e/jest.config.js",
+      "tests/integration/jest.config.js",
+      "tests/unit/jest.config.js"
+    ],
+    "setupFiles": [
+      "jest-date-mock"
+    ]
+  }
+}

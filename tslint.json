@@ -1,0 +1,21 @@
+{
+  "extends": ["tslint:recommended", "tslint-config-prettier"],
+  "rules": {
+    "max-line-length": [true, 120],
+    "no-console": [true, "log"],
+    "no-string-literal": false,
+    "ordered-imports": false,
+    "no-unused-variable": true,
+    "quotemark": [true, "double", "avoid-escape"],
+    "semicolon": [true, "always"],
+    "object-literal-sort-keys": false,
+    "trailing-comma": [
+      true,
+      {
+        "multiline": "always",
+        "singleline": "never"
+      }
+    ],
+    "variable-name": [true, "allow-leading-underscore", "ban-keywords", "check-format"]
+  }
+}
