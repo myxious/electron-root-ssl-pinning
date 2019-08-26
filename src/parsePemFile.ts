@@ -24,7 +24,9 @@ export function parsePemFile(pathname: string): RootCertificatesList {
 }
 
 export function checkFileExistence(pathname: string) {
-  const error = new Error(`File '${pathname}' does not exist`);
+  const error = new Error(
+    `File '${pathname}' does not exist. Please check correct pathname to your root CA '*.pem' file.`,
+  );
   if (!pathname) {
     throw error;
   }
