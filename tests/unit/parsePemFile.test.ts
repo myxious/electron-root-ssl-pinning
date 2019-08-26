@@ -3,29 +3,29 @@ import path from "path";
 import {
   rootCertificate as expectedCertificate,
   rootCertificatesList as expectedCertificatesList,
-} from "./data/parsePemFile";
+} from "./testSamples/parsePemFile";
 import { checkFileExistence, findAndReadCertificate, parsePemFile } from "../../src/parsePemFile";
 
-const pathToSamplePem = path.resolve(__dirname, "./data/multipleCaCerts.pem");
+const multipleCerts = path.resolve(__dirname, "./testSamples/multipleCaCerts.pem");
+const singleCert = path.resolve(__dirname, "./testSamples/singleCaCert.pem");
+const emptyCert = path.resolve(__dirname, "./testSamples/empty.pem");
+const nonExistingCert = path.resolve(__dirname, "./testSamples/__file_that_does_not_exist__.jpg");
 
 describe("'checkFileExistence' must work correctly", () => {
   test("should not throw an error if file exists", () => {
-    expect(() => checkFileExistence(pathToSamplePem)).not.toThrow();
+    expect(() => checkFileExistence(multipleCerts)).not.toThrow();
   });
 
-  test.each([path.resolve(__dirname, "./data/__file_that_does_not_exist__.jpg"), "./emptyPath", ""])(
-    "should throw an error if file doesn't exist",
-    pathname => {
-      expect(() => checkFileExistence(pathname)).toThrowError(/does not exist/);
-    },
-  );
+  test.each([nonExistingCert, "./emptyPath", ""])("should throw an error if file doesn't exist", pathname => {
+    expect(() => checkFileExistence(pathname)).toThrowError(/does not exist/);
+  });
 });
 
 describe("'findAndReadCertificate' must work correctly", () => {
   let lineReader: LineByLineReader;
 
   beforeAll(() => {
-    lineReader = new LineByLineReader(path.resolve(__dirname, "./data/singleCaCert.pem"));
+    lineReader = new LineByLineReader(singleCert);
   });
 
   test("should return a certificate and should not set the end file flag", () => {
@@ -47,11 +47,10 @@ describe("'findAndReadCertificate' must work correctly", () => {
 
 describe("'parsePemFile' must work correctly", () => {
   test("should collect all certificates", () => {
-    expect(parsePemFile(pathToSamplePem)).toEqual(expectedCertificatesList);
+    expect(parsePemFile(multipleCerts)).toEqual(expectedCertificatesList);
   });
 
   test("should throw an error if no certificates found", () => {
-    const pathToEmptyFile = path.resolve(__dirname, "./data/empty.pem");
-    expect(() => parsePemFile(pathToEmptyFile)).toThrowError(/does not contain any certificates/);
+    expect(() => parsePemFile(emptyCert)).toThrowError(/does not contain any certificates/);
   });
 });

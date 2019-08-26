@@ -26,23 +26,24 @@
     "ssl"
   ],
   "dependencies": {
+    "asn1js": "^2.0.26",
     "lodash.flow": "^3.5.0",
     "n-readlines": "^1.0.0",
-    "node-forge": "^0.8.5"
+    "pkijs": "^2.1.82"
   },
   "devDependencies": {
     "@jest-runner/electron": "^2.0.2",
-    "@types/jest": "^24.0.17",
+    "@types/asn1js": "^0.0.1",
+    "@types/jest": "^24.0.18",
     "@types/lodash.flow": "^3.5.6",
     "@types/node": "^12.7.2",
-    "@types/node-forge": "^0.8.6",
-    "electron": "^6.0.2",
+    "electron": "^6.0.4",
     "husky": "^3.0.4",
     "jest": "^24.9.0",
     "jest-date-mock": "^1.0.7",
     "prettier": "^1.18.2",
     "ts-jest": "^24.0.2",
-    "tslint": "^5.18.0",
+    "tslint": "^5.19.0",
     "tslint-config-prettier": "^1.18.0",
     "typescript": "^3.5.3"
   },

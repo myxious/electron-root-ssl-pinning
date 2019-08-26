@@ -341,3 +341,209 @@ export const domainWithExpiredCert = {
   verificationResult: "net::ERR_CERT_DATE_INVALID",
   errorCode: -201,
 };
+
+export const untrustedRoot = {
+  hostname: "untrusted-root.badssl.com",
+  certificate: {
+    data:
+      "-----BEGIN CERTIFICATE-----\nMIIEmTCCAoGgAwIBAgIJAIUyXXK7EzQEMA0GCSqGSIb3DQEBCwUAMIGBMQswCQYD\nVQQGEwJVUzETMBEGA1UECAwKQ2FsaWZvcm5pYTEWMBQGA1UEBwwNU2FuIEZyYW5j\naXNjbzEPMA0GA1UECgwGQmFkU1NMMTQwMgYDVQQDDCtCYWRTU0wgVW50cnVzdGVk\nIFJvb3QgQ2VydGlmaWNhdGUgQXV0aG9yaXR5MB4XDTE3MDkwNjAwNDYxOFoXDTE5\nMDkwNjAwNDYxOFowYjELMAkGA1UEBhMCVVMxEzARBgNVBAgMCkNhbGlmb3JuaWEx\nFjAUBgNVBAcMDVNhbiBGcmFuY2lzY28xDzANBgNVBAoMBkJhZFNTTDEVMBMGA1UE\nAwwMKi5iYWRzc2wuY29tMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA\nwgTs+IzuBMKz2FDVcFjMkxjrXKhoSbAitfmVnrErLHY+bMBLYExM6rK0wA+AtrD5\ncsmGAvlcQV0TK39xxEu86ZQuUDemZxxhjPZBQsVG0xaHJ5906wqdEVImIXNshEx5\nVeTRa+gGPUgVUq2zKNuq/27/YJVKd2s58STRMbbdTcDE/FO5bUKttXz+rvUV0jNI\n5yJxx8IUemwo6jdK3+pstXK0flqiFtxpsVdE2woSq97DD0d0XEEi4Zr5G5PmrSIG\nKS6xukkcDCeeo/uL90ByAKySCNmMV4RTgQXL5v5rVJhAJ4XHELtzcO9pGEEHRVV8\n+WQ/PSzDqXzrkxpMhtHKhQIDAQABozIwMDAJBgNVHRMEAjAAMCMGA1UdEQQcMBqC\nDCouYmFkc3NsLmNvbYIKYmFkc3NsLmNvbTANBgkqhkiG9w0BAQsFAAOCAgEAT0Hi\nlndSWdBiiyDcKtZI1tsK3wob0Nfms9hh2gEg+2FWyZmgEkKNAP4V4PyHLG7u9tnP\nYSO/QblqYfDWWl9d060lsk0b+LbQN2igBwxqpjbUE+BezAhMTHVkm12RbXZIVW4p\nFKUyh1mBloLY69anpsVIl5fC9UXcyFtpsqe/urzYCXnenp4Gmzy2Dp2fClJnHlfm\nKX24D4Mi7fzLs+aXlUjcncfX/O0Qd2XTvd37Qym6Tkfjd6vYadYYPZaE6MKr/JDI\nKPiCA4znteLG7rauRbrMjBIwOPuuKV9QAzJsk5C1wSAWKmtLfNb4ihjg5Z+x17nr\nvcUxV1fAHfPatn77dOHuhsJUhXTwkJP/JezlglU/EvbmLsILE6mu4SKIzJFLsRdt\nyrryo1pv/KkLWgna0tfq8ZPUvXwOXwKJsJTjbaHOvNrF0bGYoAS4B79mmJ9aa5OA\nXNYgeuDeuZs9PdB0+kjwO8UM19l7V2ID8zWQk0LRFm8oQoSNj8yb+ueqM49828/S\nfox/lvesMMfzJ6GoZ+RreLD/yuAlyTlgn3vsI+usrmD7/7wsEx++94hKwOuvFZSe\nZAdFfvyQE67f6E3frXtoNsHFXy3rcFbSAYeco5gnRyVXNc0DBNIqCvbh/aESHVBz\n/hdG54EMILLK9uvbfGts+BTKyUZrbwaV/egcwxc=\n-----END CERTIFICATE-----\n",
+    issuer: {
+      commonName: "BadSSL Untrusted Root Certificate Authority",
+      organizations: ["BadSSL"],
+      organizationUnits: [],
+      locality: "San Francisco",
+      state: "California",
+      country: "US",
+    },
+    issuerName: "BadSSL Untrusted Root Certificate Authority",
+    subject: {
+      commonName: "*.badssl.com",
+      organizations: ["BadSSL"],
+      organizationUnits: [],
+      locality: "San Francisco",
+      state: "California",
+      country: "US",
+    },
+    subjectName: "*.badssl.com",
+    serialNumber: "0085325D72BB133404",
+    validStart: 1504658778,
+    validExpiry: 1567730778,
+    fingerprint: "sha256/WddVolN9qBres5A1DCamoe4sKUun0qP7KUFODbzkTXU=",
+    issuerCert: {
+      data:
+        "-----BEGIN CERTIFICATE-----\nMIIGfjCCBGagAwIBAgIJAJeg/PrX5Sj9MA0GCSqGSIb3DQEBCwUAMIGBMQswCQYD\nVQQGEwJVUzETMBEGA1UECAwKQ2FsaWZvcm5pYTEWMBQGA1UEBwwNU2FuIEZyYW5j\naXNjbzEPMA0GA1UECgwGQmFkU1NMMTQwMgYDVQQDDCtCYWRTU0wgVW50cnVzdGVk\nIFJvb3QgQ2VydGlmaWNhdGUgQXV0aG9yaXR5MB4XDTE2MDcwNzA2MzEzNVoXDTM2\nMDcwMjA2MzEzNVowgYExCzAJBgNVBAYTAlVTMRMwEQYDVQQIDApDYWxpZm9ybmlh\nMRYwFAYDVQQHDA1TYW4gRnJhbmNpc2NvMQ8wDQYDVQQKDAZCYWRTU0wxNDAyBgNV\nBAMMK0JhZFNTTCBVbnRydXN0ZWQgUm9vdCBDZXJ0aWZpY2F0ZSBBdXRob3JpdHkw\nggIiMA0GCSqGSIb3DQEBAQUAA4ICDwAwggIKAoICAQDKQtPMhEH073gis/HISWAi\nbOEpCtOsatA3JmeVbaWal8O/5ZO5GAn9dFVsGn0CXAHR6eUKYDAFJLa/3AhjBvWa\ntnQLoXaYlCvBjodjLEaFi8ckcJHrAYG9qZqioRQ16Yr8wUTkbgZf+er/Z55zi1yn\nCnhWth7kekvrwVDGP1rApeLqbhYCSLeZf5W/zsjLlvJni9OrU7U3a9msvz8mcCOX\nfJX9e3VbkD/uonIbK2SvmAGMaOj/1k0dASkZtMws0Bk7m1pTQL+qXDM/h3BQZJa5\nDwTcATaa/Qnk6YHbj/MaS5nzCSmR0Xmvs/3CulQYiZJ3kypns1KdqlGuwkfiCCgD\nyWJy7NE9qdj6xxLdqzne2DCyuPrjFPS0mmYimpykgbPnirEPBF1LW3GJc9yfhVXE\nCc8OY8lWzxazDNNbeSRDpAGbBeGSQXGjAbliFJxwLyGzZ+cG+G8lc+zSvWjQu4Xp\nGJ+dOREhQhl+9U8oyPX34gfKo63muSgo539hGylqgQyzj+SX8OgK1FXXb2LS1gxt\nVIR5Qc4MmiEG2LKwPwfU8Yi+t5TYjGh8gaFv6NnksoX4hU42gP5KvjYggDpR+NSN\nCGQSWHfZASAYDpxjrOo+rk4xnO+sbuuMk7gORsrl+jgRT8F2VqoR9Z3CEdQxcCjR\n5FsfTymZCk3GfIbWKkaeLQIDAQABo4H2MIHzMB0GA1UdDgQWBBRvx4NzSbWnY/91\n3m1u/u37l6MsADCBtgYDVR0jBIGuMIGrgBRvx4NzSbWnY/913m1u/u37l6MsAKGB\nh6SBhDCBgTELMAkGA1UEBhMCVVMxEzARBgNVBAgMCkNhbGlmb3JuaWExFjAUBgNV\nBAcMDVNhbiBGcmFuY2lzY28xDzANBgNVBAoMBkJhZFNTTDE0MDIGA1UEAwwrQmFk\nU1NMIFVudHJ1c3RlZCBSb290IENlcnRpZmljYXRlIEF1dGhvcml0eYIJAJeg/PrX\n5Sj9MAwGA1UdEwQFMAMBAf8wCwYDVR0PBAQDAgEGMA0GCSqGSIb3DQEBCwUAA4IC\nAQBQU9U8+jTRT6H9AIFm6y50tXTg/ySxRNmeP1Ey9Zf4jUE6yr3Q8xBv9gTFLiY1\nqW2qfkDSmXVdBkl/OU3+xb5QOG5hW7wVolWQyKREV5EvUZXZxoH7LVEMdkCsRJDK\nwYEKnEErFls5WPXY3bOglBOQqAIiuLQ0f77a2HXULDdQTn5SueW/vrA4RJEKuWxU\niD9XPnVZ9tPtky2Du7wcL9qhgTddpS/NgAuLO4PXh2TQ0EMCll5reZ5AEr0NSLDF\nc/koDv/EZqB7VYhcPzr1bhQgbv1dl9NZU0dWKIMkRE/T7vZ97I3aPZqIapC2ulrf\nKrlqjXidwrGFg8xbiGYQHPx3tHPZxoM5WG2voI6G3s1/iD+B4V6lUEvivd3f6tq7\nd1V/3q1sL5DNv7TvaKGsq8g5un0TAkqaewJQ5fXLigF/yYu5a24/GUD783MdAPFv\ngWz8F81evOyRfpf9CAqIswMF+T6Dwv3aw5L9hSniMrblkg+ai0K22JfoBcGOzMtB\nKe/Ps2Za56dTRoY/a4r62hrcGxufXd0mTdPaJLw3sJeHYjLxVAYWQq4QKJQWDgTS\ndAEWyN2WXaBFPx5c8KIW95Eu8ShWE00VVC3oA4emoZ2nrzBXLrUScifY6VaYYkkR\n2O2tSqU8Ri3XRdgpNPDWp8ZL49KhYGYo3R/k98gnMHiY5g==\n-----END CERTIFICATE-----\n",
+      issuer: {
+        commonName: "BadSSL Untrusted Root Certificate Authority",
+        organizations: ["BadSSL"],
+        organizationUnits: [],
+        locality: "San Francisco",
+        state: "California",
+        country: "US",
+      },
+      issuerName: "BadSSL Untrusted Root Certificate Authority",
+      subject: {
+        commonName: "BadSSL Untrusted Root Certificate Authority",
+        organizations: ["BadSSL"],
+        organizationUnits: [],
+        locality: "San Francisco",
+        state: "California",
+        country: "US",
+      },
+      subjectName: "BadSSL Untrusted Root Certificate Authority",
+      serialNumber: "0097A0FCFAD7E528FD",
+      validStart: 1467873095,
+      validExpiry: 2098593095,
+      fingerprint: "sha256/QxlLVvF80Lcr5UizWuk62xZk5AI9HX0JV/W6tmox/j0=",
+    },
+  },
+  verificationResult: "net::ERR_CERT_AUTHORITY_INVALID",
+  errorCode: -202,
+};
+
+export const selfSigned = {
+  hostname: "self-signed.badssl.com",
+  certificate: {
+    data:
+      "-----BEGIN CERTIFICATE-----\nMIIDeTCCAmGgAwIBAgIJAK32hhGBHramMA0GCSqGSIb3DQEBCwUAMGIxCzAJBgNV\nBAYTAlVTMRMwEQYDVQQIDApDYWxpZm9ybmlhMRYwFAYDVQQHDA1TYW4gRnJhbmNp\nc2NvMQ8wDQYDVQQKDAZCYWRTU0wxFTATBgNVBAMMDCouYmFkc3NsLmNvbTAeFw0x\nOTA2MTIxNTMxNTlaFw0yMTA2MTExNTMxNTlaMGIxCzAJBgNVBAYTAlVTMRMwEQYD\nVQQIDApDYWxpZm9ybmlhMRYwFAYDVQQHDA1TYW4gRnJhbmNpc2NvMQ8wDQYDVQQK\nDAZCYWRTU0wxFTATBgNVBAMMDCouYmFkc3NsLmNvbTCCASIwDQYJKoZIhvcNAQEB\nBQADggEPADCCAQoCggEBAMIE7PiM7gTCs9hQ1XBYzJMY61yoaEmwIrX5lZ6xKyx2\nPmzAS2BMTOqytMAPgLaw+XLJhgL5XEFdEyt/ccRLvOmULlA3pmccYYz2QULFRtMW\nhyefdOsKnRFSJiFzbIRMeVXk0WvoBj1IFVKtsyjbqv9u/2CVSndrOfEk0TG23U3A\nxPxTuW1CrbV8/q71FdIzSOciccfCFHpsKOo3St/qbLVytH5aohbcabFXRNsKEqve\nww9HdFxBIuGa+RuT5q0iBikusbpJHAwnnqP7i/dAcgCskgjZjFeEU4EFy+b+a1SY\nQCeFxxC7c3DvaRhBB0VVfPlkPz0sw6l865MaTIbRyoUCAwEAAaMyMDAwCQYDVR0T\nBAIwADAjBgNVHREEHDAaggwqLmJhZHNzbC5jb22CCmJhZHNzbC5jb20wDQYJKoZI\nhvcNAQELBQADggEBAIi5u9w8mgT6ppCc7xsG+A9fI3W4z+qSKaphr5ls70GBKbiY\nYLJUYZhPfWph1qtkkU0LHFPm83Va52eIHrjXT0Ve4KtO1n0IAfItFaW62CJghGYn\njzw0ryzgC4PyFpNMnNtBroPu/bPgWiMgLONpEZhigx4Q8wf1Y/U9s+zCCxoJlaKR\nMXbuQ87X7m/9VRnxxo6Nz5Zf7OTHTpNOI6Vja0BxbmIAU6yriw9UrgibXfOj3j6n\nMTLBugUVIB0bBaasJsAMK+w4LANvapeZ0DOSnOR4KK24J0OyoF5fHmp59eM17IoF\nQqBhzpmQUgunecEW8BTqrNpG79R1u+V+4wwckPc=\n-----END CERTIFICATE-----\n",
+    issuer: {
+      commonName: "*.badssl.com",
+      organizations: ["BadSSL"],
+      organizationUnits: [],
+      locality: "San Francisco",
+      state: "California",
+      country: "US",
+    },
+    issuerName: "*.badssl.com",
+    subject: {
+      commonName: "*.badssl.com",
+      organizations: ["BadSSL"],
+      organizationUnits: [],
+      locality: "San Francisco",
+      state: "California",
+      country: "US",
+    },
+    subjectName: "*.badssl.com",
+    serialNumber: "00ADF68611811EB6A6",
+    validStart: 1560353519,
+    validExpiry: 1623425519,
+    fingerprint: "sha256/tsq5LrcwgePe1vtqzOeqYxsNxSTIs2YedwyA1Jxi7Ls=",
+  },
+  verificationResult: "net::ERR_CERT_AUTHORITY_INVALID",
+  errorCode: -202,
+};
+
+export const wrongHostRequest = {
+  hostname: "wrong.host.badssl.com",
+  certificate: {
+    data:
+      "-----BEGIN CERTIFICATE-----\n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\n-----END CERTIFICATE-----\n",
+    issuer: {
+      commonName: "DigiCert SHA2 Secure Server CA",
+      organizations: ["DigiCert Inc"],
+      organizationUnits: [],
+      locality: "",
+      state: "",
+      country: "US",
+    },
+    issuerName: "DigiCert SHA2 Secure Server CA",
+    subject: {
+      commonName: "*.badssl.com",
+      organizations: ["Lucas Garron"],
+      organizationUnits: [],
+      locality: "Walnut Creek",
+      state: "California",
+      country: "US",
+    },
+    subjectName: "*.badssl.com",
+    serialNumber: "01F202031DFDA98EFDFF0F72BE51060D",
+    validStart: 1489795200,
+    validExpiry: 1585137600,
+    fingerprint: "sha256/2QDRg00Heknn1ymo0GXX2sS/ZxOQytHe2IcjA1VOBLI=",
+    issuerCert: {
+      data:
+        "-----BEGIN CERTIFICATE-----\nMIIElDCCA3ygAwIBAgIQAf2j627KdciIQ4tyS8+8kTANBgkqhkiG9w0BAQsFADBh\nMQswCQYDVQQGEwJVUzEVMBMGA1UEChMMRGlnaUNlcnQgSW5jMRkwFwYDVQQLExB3\nd3cuZGlnaWNlcnQuY29tMSAwHgYDVQQDExdEaWdpQ2VydCBHbG9iYWwgUm9vdCBD\nQTAeFw0xMzAzMDgxMjAwMDBaFw0yMzAzMDgxMjAwMDBaME0xCzAJBgNVBAYTAlVT\nMRUwEwYDVQQKEwxEaWdpQ2VydCBJbmMxJzAlBgNVBAMTHkRpZ2lDZXJ0IFNIQTIg\nU2VjdXJlIFNlcnZlciBDQTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEB\nANyuWJBNwcQwFZA1W248ghX1LFy949v/cUP6ZCWA1O4Yok3wZtAKc24RmDYXZK83\nnf36QYSvx6+M/hpzTc8zl5CilodTgyu5pnVILR1WN3vaMTIa16yrBvSqXUu3R0bd\nKpPDkC55gIDvEwRqFDu1m5K+wgdlTvza/P96rtxcflUxDOg5B6TXvi/TC2rSsd9f\n/ld0Uzs1gN2ujkSYs58O09rg1/RrKatEp0tYhG2SS4HD2nOLEpdIkARFdRrdNzGX\nkujNVA075ME/OV4uuPNcfhCOhkEAjUVmR7ChZc6gqikJTvOX6+guqw9ypzAO+sf0\n/RR3w6RbKFfCs/mC/bdFWJsCAwEAAaOCAVowggFWMBIGA1UdEwEB/wQIMAYBAf8C\nAQAwDgYDVR0PAQH/BAQDAgGGMDQGCCsGAQUFBwEBBCgwJjAkBggrBgEFBQcwAYYY\naHR0cDovL29jc3AuZGlnaWNlcnQuY29tMHsGA1UdHwR0MHIwN6A1oDOGMWh0dHA6\nLy9jcmwzLmRpZ2ljZXJ0LmNvbS9EaWdpQ2VydEdsb2JhbFJvb3RDQS5jcmwwN6A1\noDOGMWh0dHA6Ly9jcmw0LmRpZ2ljZXJ0LmNvbS9EaWdpQ2VydEdsb2JhbFJvb3RD\nQS5jcmwwPQYDVR0gBDYwNDAyBgRVHSAAMCowKAYIKwYBBQUHAgEWHGh0dHBzOi8v\nd3d3LmRpZ2ljZXJ0LmNvbS9DUFMwHQYDVR0OBBYEFA+AYRyCMWHVLyjnjUY4tCzh\nxtniMB8GA1UdIwQYMBaAFAPeUDVW0Uy7ZvCj4hsbw5eyPdFVMA0GCSqGSIb3DQEB\nCwUAA4IBAQAjPt9L0jFCpbZ+QlwaRMxp0Wi0XUvgBCFsS+JtzLHgl4+mUwnNqipl\n5TlPHoOlblyYoiQm5vuh7ZPHLgLGTUq/sELfeNqzqPlt/yGFUzZgTHbO7Djc1lGA\n8MXW5dRNJ2Srm8c+cftIl7gzbckTB+6WohsYFfZcTEDts8Ls/3HB40f/1LkAtDdC\n2iDJ6m6K7hQGrn2iWZiIqBtvLfTyyRRfJs8sjX7tN8Cp1Tm5gr8ZDOo0rwAhaPit\nc+LJMto4JQtV05od8GiG7S5BNO98pVAdvzr508EIDObtHopYJeS4d60tbvVS3bR0\nj6tJLp07kzQoH3jOlOrHvdPJbRzeXDLz\n-----END CERTIFICATE-----\n",
+      issuer: {
+        commonName: "DigiCert Global Root CA",
+        organizations: ["DigiCert Inc"],
+        organizationUnits: ["www.digicert.com"],
+        locality: "",
+        state: "",
+        country: "US",
+      },
+      issuerName: "DigiCert Global Root CA",
+      subject: {
+        commonName: "DigiCert SHA2 Secure Server CA",
+        organizations: ["DigiCert Inc"],
+        organizationUnits: [],
+        locality: "",
+        state: "",
+        country: "US",
+      },
+      subjectName: "DigiCert SHA2 Secure Server CA",
+      serialNumber: "01FDA3EB6ECA75C888438B724BCFBC91",
+      validStart: 1362744000,
+      validExpiry: 1678276800,
+      fingerprint: "sha256/FUxDPEkZKcXvaG6DjjI2ZKAOag2CLMyVj7TasD5JoI8=",
+    },
+  },
+  verificationResult: "net::ERR_CERT_COMMON_NAME_INVALID",
+  errorCode: -200,
+};
+
+export const youtubeComRequest = {
+  hostname: "youtube.com",
+  certificate: {
+    data:
+      "-----BEGIN CERTIFICATE-----\nMIIIIDCCBwigAwIBAgIQdFFdOvtZKGMnFerJav62lzANBgkqhkiG9w0BAQsFADBU\nMQswCQYDVQQGEwJVUzEeMBwGA1UEChMVR29vZ2xlIFRydXN0IFNlcnZpY2VzMSUw\nIwYDVQQDExxHb29nbGUgSW50ZXJuZXQgQXV0aG9yaXR5IEczMB4XDTE5MDcyOTE4\nNDQyN1oXDTE5MTAyMTE4MjMwMFowZjELMAkGA1UEBhMCVVMxEzARBgNVBAgMCkNh\nbGlmb3JuaWExFjAUBgNVBAcMDU1vdW50YWluIFZpZXcxEzARBgNVBAoMCkdvb2ds\nZSBMTEMxFTATBgNVBAMMDCouZ29vZ2xlLmNvbTBZMBMGByqGSM49AgEGCCqGSM49\nAwEHA0IABOOufVj7d5UF/N49KyXmA0Z0rlQPEicHK5CbO122uECXYbWwepNlWlqM\n7V1GF0vRutC8YyAlxrCsUmOTrpem7NWjggWlMIIFoTATBgNVHSUEDDAKBggrBgEF\nBQcDATAOBgNVHQ8BAf8EBAMCB4AwggRqBgNVHREEggRhMIIEXYIMKi5nb29nbGUu\nY29tgg0qLmFuZHJvaWQuY29tghYqLmFwcGVuZ2luZS5nb29nbGUuY29tghIqLmNs\nb3VkLmdvb2dsZS5jb22CGCouY3Jvd2Rzb3VyY2UuZ29vZ2xlLmNvbYIGKi5nLmNv\ngg4qLmdjcC5ndnQyLmNvbYIRKi5nY3BjZG4uZ3Z0MS5jb22CCiouZ2dwaHQuY26C\nFiouZ29vZ2xlLWFuYWx5dGljcy5jb22CCyouZ29vZ2xlLmNhggsqLmdvb2dsZS5j\nbIIOKi5nb29nbGUuY28uaW6CDiouZ29vZ2xlLmNvLmpwgg4qLmdvb2dsZS5jby51\na4IPKi5nb29nbGUuY29tLmFygg8qLmdvb2dsZS5jb20uYXWCDyouZ29vZ2xlLmNv\nbS5icoIPKi5nb29nbGUuY29tLmNvgg8qLmdvb2dsZS5jb20ubXiCDyouZ29vZ2xl\nLmNvbS50coIPKi5nb29nbGUuY29tLnZuggsqLmdvb2dsZS5kZYILKi5nb29nbGUu\nZXOCCyouZ29vZ2xlLmZyggsqLmdvb2dsZS5odYILKi5nb29nbGUuaXSCCyouZ29v\nZ2xlLm5sggsqLmdvb2dsZS5wbIILKi5nb29nbGUucHSCEiouZ29vZ2xlYWRhcGlz\nLmNvbYIPKi5nb29nbGVhcGlzLmNughEqLmdvb2dsZWNuYXBwcy5jboIUKi5nb29n\nbGVjb21tZXJjZS5jb22CESouZ29vZ2xldmlkZW8uY29tggwqLmdzdGF0aWMuY26C\nDSouZ3N0YXRpYy5jb22CEiouZ3N0YXRpY2NuYXBwcy5jboIKKi5ndnQxLmNvbYIK\nKi5ndnQyLmNvbYIUKi5tZXRyaWMuZ3N0YXRpYy5jb22CDCoudXJjaGluLmNvbYIQ\nKi51cmwuZ29vZ2xlLmNvbYIWKi55b3V0dWJlLW5vY29va2llLmNvbYINKi55b3V0\ndWJlLmNvbYIWKi55b3V0dWJlZWR1Y2F0aW9uLmNvbYIRKi55b3V0dWJla2lkcy5j\nb22CByoueXQuYmWCCyoueXRpbWcuY29tghphbmRyb2lkLmNsaWVudHMuZ29vZ2xl\nLmNvbYILYW5kcm9pZC5jb22CG2RldmVsb3Blci5hbmRyb2lkLmdvb2dsZS5jboIc\nZGV2ZWxvcGVycy5hbmRyb2lkLmdvb2dsZS5jboIEZy5jb4IIZ2dwaHQuY26CBmdv\nby5nbIIUZ29vZ2xlLWFuYWx5dGljcy5jb22CCmdvb2dsZS5jb22CD2dvb2dsZWNu\nYXBwcy5jboISZ29vZ2xlY29tbWVyY2UuY29tghhzb3VyY2UuYW5kcm9pZC5nb29n\nbGUuY26CCnVyY2hpbi5jb22CCnd3dy5nb28uZ2yCCHlvdXR1LmJlggt5b3V0dWJl\nLmNvbYIUeW91dHViZWVkdWNhdGlvbi5jb22CD3lvdXR1YmVraWRzLmNvbYIFeXQu\nYmUwaAYIKwYBBQUHAQEEXDBaMC0GCCsGAQUFBzAChiFodHRwOi8vcGtpLmdvb2cv\nZ3NyMi9HVFNHSUFHMy5jcnQwKQYIKwYBBQUHMAGGHWh0dHA6Ly9vY3NwLnBraS5n\nb29nL0dUU0dJQUczMB0GA1UdDgQWBBRPZJy/ftYprTgIqQTFvmZIl+XaGTAMBgNV\nHRMBAf8EAjAAMB8GA1UdIwQYMBaAFHfCuFCaZ3Z2sS3ChtCDoH6mfrpLMCEGA1Ud\nIAQaMBgwDAYKKwYBBAHWeQIFAzAIBgZngQwBAgIwMQYDVR0fBCowKDAmoCSgIoYg\naHR0cDovL2NybC5wa2kuZ29vZy9HVFNHSUFHMy5jcmwwDQYJKoZIhvcNAQELBQAD\nggEBADc7+G7Np83iC8KU6GYSKizr/2VbPPpBjR5EzXIdUpUgxWFQ7Faxd1LVhm22\nQVlmMKjjYe7JUxnaIa5Zay6pBlMr5Fq+HbSTuA63GOt4IW1CvB1zAOaJWfxGXaNX\n1Xg/740qWEDoe95h9Xm/fIcFLD86FCUITAenFKBOKdaKoBMGoDBOq7jUdn492oGB\nYi+QtXfNjvcZm0yABGTjQOtH8JzyWKx1NvNLw5gSXYH5Vmj/QzRBEED3+pIJh6vg\nKIGEhG+hCg4tx4k0nnwoHGnL4a2mcemlRIWRCcjbb/BoF+05EvQvB6PcurckBaPN\n8r7wWCxefYViIMnHiMmzPdwZYIA=\n-----END CERTIFICATE-----\n",
+    issuer: {
+      commonName: "Google Internet Authority G3",
+      organizations: ["Google Trust Services"],
+      organizationUnits: [],
+      locality: "",
+      state: "",
+      country: "US",
+    },
+    issuerName: "Google Internet Authority G3",
+    subject: {
+      commonName: "*.google.com",
+      organizations: ["Google LLC"],
+      organizationUnits: [],
+      locality: "Mountain View",
+      state: "California",
+      country: "US",
+    },
+    subjectName: "*.google.com",
+    serialNumber: "74515D3AFB5928632715EAC96AFEB697",
+    validStart: 1564425867,
+    validExpiry: 1571682180,
+    fingerprint: "sha256/k3rrQ1jAnzHNMCUXQZ2d8Y+k41i9X/cMK/LhjaSW9j4=",
+    issuerCert: {
+      data:
+        "-----BEGIN CERTIFICATE-----\nMIIEXDCCA0SgAwIBAgINAeOpMBz8cgY4P5pTHTANBgkqhkiG9w0BAQsFADBMMSAw\nHgYDVQQLExdHbG9iYWxTaWduIFJvb3QgQ0EgLSBSMjETMBEGA1UEChMKR2xvYmFs\nU2lnbjETMBEGA1UEAxMKR2xvYmFsU2lnbjAeFw0xNzA2MTUwMDAwNDJaFw0yMTEy\nMTUwMDAwNDJaMFQxCzAJBgNVBAYTAlVTMR4wHAYDVQQKExVHb29nbGUgVHJ1c3Qg\nU2VydmljZXMxJTAjBgNVBAMTHEdvb2dsZSBJbnRlcm5ldCBBdXRob3JpdHkgRzMw\nggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDKUkvqHv/OJGuo2nIYaNVW\nXQ5IWi01CXZaz6TIHLGp/lOJ+600/4hbn7vn6AAB3DVzdQOts7G5pH0rJnnOFUAK\n71G4nzKMfHCGUksW/mona+Y2emJQ2N+aicwJKetPKRSIgAuPOB6Aahh8Hb2XO3h9\nRUk2T0HNouB2VzxoMXlkyW7XUR5mw6JkLHnA52XDVoRTWkNty5oCINLvGmnRsJ1z\nouAqYGVQMc/7sy+/EYhALrVJEA8KbtyX+r8snwU5C1hUrwaW6MWOARa8qBpNQcWT\nkaIeoYvy/sGIJEmjR0vFEwHdp1cSaWIr6/4g72n7OqXwfinu7ZYW97EfoOSQJeAz\nAgMBAAGjggEzMIIBLzAOBgNVHQ8BAf8EBAMCAYYwHQYDVR0lBBYwFAYIKwYBBQUH\nAwEGCCsGAQUFBwMCMBIGA1UdEwEB/wQIMAYBAf8CAQAwHQYDVR0OBBYEFHfCuFCa\nZ3Z2sS3ChtCDoH6mfrpLMB8GA1UdIwQYMBaAFJviB1dnHB7AagbeWbSaLd/cGYYu\nMDUGCCsGAQUFBwEBBCkwJzAlBggrBgEFBQcwAYYZaHR0cDovL29jc3AucGtpLmdv\nb2cvZ3NyMjAyBgNVHR8EKzApMCegJaAjhiFodHRwOi8vY3JsLnBraS5nb29nL2dz\ncjIvZ3NyMi5jcmwwPwYDVR0gBDgwNjA0BgZngQwBAgIwKjAoBggrBgEFBQcCARYc\naHR0cHM6Ly9wa2kuZ29vZy9yZXBvc2l0b3J5LzANBgkqhkiG9w0BAQsFAAOCAQEA\nHLeJluRT7bvs26gyAZ8so81trUISd7O45skDUmAge1cnxhG1P2cNmSxbWsoiCt2e\nux9LSD+PAj2LIYRFHW31/6xoic1k4tbWXkDCjir37xTTNqRAMPUyFRWSdvt+nlPq\nwnb8Oa2I/maSJukcxDjNSfpDh/Bd1lZNgdd/8cLdsE3+wypufJ9uXO1iQpnh9zbu\nFIwsIONGl1p3A8CgxkqI/UAih3JaGOqcpcdaCIzkBaR9uYQ1X4k2Vg5APRLouzVy\n7a8IVk6wuy6pm+T7HT4LY8ibS5FEZlfAFLSW8NwsVz9SBK2Vqn1N0PIMn5xA6NZV\nc7o835DLAFshEWfC7TIe3g==\n-----END CERTIFICATE-----\n",
+      issuer: {
+        commonName: "GlobalSign",
+        organizations: ["GlobalSign"],
+        organizationUnits: ["GlobalSign Root CA - R2"],
+        locality: "",
+        state: "",
+        country: "",
+      },
+      issuerName: "GlobalSign",
+      subject: {
+        commonName: "Google Internet Authority G3",
+        organizations: ["Google Trust Services"],
+        organizationUnits: [],
+        locality: "",
+        state: "",
+        country: "US",
+      },
+      subjectName: "Google Internet Authority G3",
+      serialNumber: "01E3A9301CFC7206383F9A531D",
+      validStart: 1497484842,
+      validExpiry: 1639526442,
+      fingerprint: "sha256/vgzNVNTOzaG9Xl2ezIWgTCwfk6UiDXf96I/prQgfZBs=",
+    },
+  },
+  verificationResult: "net::OK",
+  errorCode: 0,
+};

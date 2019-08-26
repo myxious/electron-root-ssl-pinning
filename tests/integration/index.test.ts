@@ -1,18 +1,23 @@
 import { advanceTo, clear } from "jest-date-mock";
-import { pki } from "node-forge";
 import path from "path";
-import { createChainVerifier } from "../../src/createChainVerifier";
-import { createRootCaVerifier } from "../../src/index";
-import { rootCertificatesList } from "./data/sampleRootCertificatesList";
-import { redditCom, firebaseCom, pgGateway, domainWithExpiredCert } from "./data/requests";
-import { VerificationResult } from "../../src/types";
-import { disableConsoleError, enableConsoleError, predefinedDate } from "../utils";
+import { rootCaList } from "./testSamples/rootCaList";
+import { CertificateVerifier, VerificationResult } from "../../src/types";
+import { predefinedDate } from "../utils";
+import { createRootCaVerifier } from "../../src";
+import {
+  redditCom,
+  firebaseCom,
+  exampleOrg,
+  pgGateway,
+  domainWithExpiredCert,
+  untrustedRoot,
+  selfSigned,
+  wrongHostRequest,
+  youtubeComRequest,
+} from "./testSamples/requests";
 
-describe("'createChainVerifier' must work correctly", () => {
-  let caStore: pki.CAStore;
-
+describe("'createRootCaVerifier' must work correctly", () => {
   beforeAll(() => {
-    caStore = pki.createCaStore(rootCertificatesList);
     advanceTo(predefinedDate);
   });
 
@@ -20,42 +25,36 @@ describe("'createChainVerifier' must work correctly", () => {
     clear();
   });
 
-  test.each([redditCom, firebaseCom, pgGateway])("should validate request and return status VALID", request => {
-    const verifier = createChainVerifier(caStore);
-    expect(verifier(request)).toBe(VerificationResult.VALID);
+  let verifierBasedOnFile: CertificateVerifier;
+  let verifierBasedOnArray: CertificateVerifier;
+
+  test("should create verifier with given path to '*.pem' file without an error", () => {
+    const pathname = path.resolve(__dirname, "./testSamples/cacert.pem");
+    expect(() => {
+      verifierBasedOnFile = createRootCaVerifier(pathname);
+    }).not.toThrow();
   });
 
-  test("should validate request and return status INVALID", () => {
-    const verifier = createChainVerifier(caStore);
-    disableConsoleError();
-    expect(verifier(domainWithExpiredCert)).toBe(VerificationResult.INVALID);
-    enableConsoleError();
+  test("should create verifier with given array of pem without an error", () => {
+    expect(() => {
+      verifierBasedOnArray = createRootCaVerifier(rootCaList);
+    }).not.toThrow();
   });
 
-  test("should return status INTERNAL_ERROR", () => {
-    const verifier = createChainVerifier(caStore);
-    disableConsoleError();
-    // @ts-ignore
-    expect(verifier({})).toBe(VerificationResult.INTERNAL_ERROR);
-    enableConsoleError();
-  });
-});
-
-describe("'createRootCaVerifier' must work correctly", () => {
-  test("must work with given certificates array", () => {
-    const verifier = createRootCaVerifier(rootCertificatesList);
-    expect(verifier(redditCom)).toBe(VerificationResult.VALID);
-    disableConsoleError();
-    expect(verifier(domainWithExpiredCert)).toBe(VerificationResult.INVALID);
-    enableConsoleError();
-  });
-
-  test("must work with given path to '*.pem' file", () => {
-    const pathname = path.resolve(__dirname, "./data/cacert.pem");
-    const verifier = createRootCaVerifier(pathname);
-    expect(verifier(redditCom)).toBe(VerificationResult.VALID);
-    disableConsoleError();
-    expect(verifier(domainWithExpiredCert)).toBe(VerificationResult.INVALID);
-    enableConsoleError();
+  // TODO: add more samples
+  test.each`
+    request                  | expectedResult
+    ${redditCom}             | ${VerificationResult.VALID}
+    ${firebaseCom}           | ${VerificationResult.VALID}
+    ${exampleOrg}            | ${VerificationResult.VALID}
+    ${pgGateway}             | ${VerificationResult.VALID}
+    ${domainWithExpiredCert} | ${VerificationResult.INVALID}
+    ${untrustedRoot}         | ${VerificationResult.INVALID}
+    ${selfSigned}            | ${VerificationResult.INVALID}
+    ${wrongHostRequest}      | ${VerificationResult.INVALID}
+    ${youtubeComRequest}     | ${VerificationResult.VALID}
+  `("verifier should return $expectedResult ($request.hostname)", async ({ request, expectedResult }) => {
+    expect(await verifierBasedOnFile(request)).toEqual(expectedResult);
+    expect(await verifierBasedOnArray(request)).toEqual(expectedResult);
   });
 });
