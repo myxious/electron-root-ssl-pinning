@@ -1,6 +1,6 @@
 {
   "name": "electron-root-ssl-pinning",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "description": "Pinning root CA certificates into your Electron app",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
