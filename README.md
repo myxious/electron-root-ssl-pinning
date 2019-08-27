@@ -94,6 +94,8 @@ session.defaultSession.setCertificateVerifyProc(async (request, callback) => {
 });
 ```
 
+#### TODO: [`add sha1 rejection`]
+
 ### Licence
 
 [MIT](LICENSE)
