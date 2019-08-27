@@ -53,7 +53,7 @@
     }
   },
   "files": [
-    "lib/**/*"
+    "lib"
   ],
   "jest": {
     "projects": [
