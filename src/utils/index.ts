@@ -9,9 +9,10 @@ const organizationalUnitNameOid = "2.5.4.11";
 /**
  * Create PKI.JS Certificate instance by pem string
  */
-export function createPKICertificate(pem: string) {
+export function createPKICertificate(pem: string): Certificate {
   const certArrayBuffer = convertPemToArrayBuffer(removePemArmoring(pem));
   const asn1data = asn1js.fromBER(certArrayBuffer);
+
   return new Certificate({ schema: asn1data.result });
 }
 
@@ -35,7 +36,7 @@ export function findDistinguishedName(pkiCert: Certificate, who: "subject" | "is
 }
 
 /**
- * Check if given certificate is root or not
+ * Checks if given certificate is root or not
  */
 export function isRootCertificate(cert: Certificate) {
   const issuerDN = findDistinguishedName(cert, "issuer");
@@ -45,13 +46,14 @@ export function isRootCertificate(cert: Certificate) {
 }
 
 /**
- * Remove '-----BEGIN CERTIFICATE-----' and '-----END CERTIFICATE-----' of the PEM certificate string
+ * Removes '-----BEGIN CERTIFICATE-----' and '-----END CERTIFICATE-----' of the PEM certificate string
  */
 export function removePemArmoring(pemString: string) {
   const result = pemString.replace(
     /((\n|\r)?-----BEGIN CERTIFICATE-----(\n|\r)?|(\n|\r)?-----END CERTIFICATE-----(\n|\r)?)/g,
     "",
   );
+
   return result.trim();
 }
 
@@ -62,4 +64,13 @@ function convertPemToArrayBuffer(pemString: string) {
   const buffer = Buffer.from(pemString, "base64");
 
   return new Uint8Array(buffer).buffer;
+}
+
+/**
+ * Checks the validity period of given certificate (either it's not expired or is not yet valid)
+ */
+export function checkValidityPeriod(cert: Certificate) {
+  const currentDate = new Date();
+
+  return currentDate >= cert.notBefore.value && currentDate <= cert.notAfter.value;
 }

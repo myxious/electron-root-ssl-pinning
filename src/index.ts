@@ -1,7 +1,7 @@
 import flow from "lodash.flow";
 import { CreateRootCAVerifier, RootCertificatesList, ICaStore, CertificateVerifier, RootCertificates } from "./types";
 import { parsePemFile } from "./parsePemFile";
-import { createPKICertificate, isRootCertificate, findDistinguishedName } from "./utils";
+import { createPKICertificate, isRootCertificate, findDistinguishedName, checkValidityPeriod } from "./utils";
 import { createChainVerifier } from "./createChainVerifier";
 
 export const createRootCaVerifier: CreateRootCAVerifier = rootCertificates =>
@@ -31,9 +31,17 @@ export function createCAStore(rootCertificatesList: RootCertificatesList): ICaSt
   try {
     return rootCertificatesList.reduce((dictionary: ICaStore, pem) => {
       const pkiCert = createPKICertificate(pem);
-      // TODO: add time validation?
+      const isCorrectValidityPeriod = checkValidityPeriod(pkiCert);
+      const pemFirstSymbols = pem.slice(27, 47).trim();
+
+      if (!isCorrectValidityPeriod) {
+        console.error(
+          `Given root certificate '${pemFirstSymbols}...' has an invalid validity period (either it has expired or is not valid yet)`,
+        );
+      }
+
       if (!isRootCertificate(pkiCert)) {
-        throw new Error(`Certificate '${pem.slice(0, 25)}...' is not a root CA`);
+        throw new Error(`Certificate '${pemFirstSymbols}...' is not a root CA`);
       }
 
       const dn = findDistinguishedName(pkiCert, "subject");

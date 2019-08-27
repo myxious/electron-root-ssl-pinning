@@ -8,7 +8,7 @@ import {
   ICertificateVerifyProcRequest,
   IRequestCertificate,
 } from "./types";
-import { commonNameOid, subjectAlternativeNameOid } from "./utils";
+import { commonNameOid, subjectAlternativeNameOid, checkValidityPeriod } from "./utils";
 
 export function createChainVerifier(caStore: ICaStore): CertificateVerifier {
   return async (request: ICertificateVerifyProcRequest): Promise<VerificationResult> => {
@@ -50,20 +50,22 @@ export function createCertificatesChainFromRequest(request: ICertificateVerifyPr
 }
 
 export async function verifyChain(chain: Certificate[], caStore: ICaStore): Promise<VerificationResult> {
-  const lastIntermediateCert = chain[chain.length - 1];
-  if (lastIntermediateCert) {
-    const rootCaKey = findDistinguishedName(chain[chain.length - 1], "issuer");
+  if (chain.every(cert => checkValidityPeriod(cert))) {
+    const lastIntermediateCert = chain[chain.length - 1];
+    if (lastIntermediateCert) {
+      const rootCaKey = findDistinguishedName(lastIntermediateCert, "issuer");
 
-    if (caStore[rootCaKey] !== undefined) {
-      const validator = new CertificateChainValidationEngine({
-        certs: [...chain, caStore[rootCaKey]],
-        trustedCerts: [caStore[rootCaKey]],
-      });
+      if (caStore[rootCaKey] !== undefined) {
+        const validator = new CertificateChainValidationEngine({
+          certs: [...chain, caStore[rootCaKey]],
+          trustedCerts: [caStore[rootCaKey]],
+        });
 
-      const { result } = await validator.verify();
+        const { result } = await validator.verify();
 
-      if (result) {
-        return VerificationResult.VALID;
+        if (result) {
+          return VerificationResult.VALID;
+        }
       }
     }
   }

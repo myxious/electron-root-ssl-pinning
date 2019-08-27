@@ -7,7 +7,13 @@ import {
   verifyChain,
   isAllowedDomain,
 } from "../../src/createChainVerifier";
-import { createPKICertificate, isRootCertificate, findDistinguishedName, removePemArmoring } from "../../src/utils";
+import {
+  createPKICertificate,
+  isRootCertificate,
+  findDistinguishedName,
+  removePemArmoring,
+  checkValidityPeriod,
+} from "../../src/utils";
 import {
   globalSignRootCA,
   globalSignRootCAR2,
@@ -244,5 +250,25 @@ describe("'isAllowedDomain' must work correctly", () => {
     ${"example.org"}           | ${""}             | ${false}
   `("should return $expectedResult ($hostname)", ({ hostname, allowedName, expectedResult }) => {
     expect(isAllowedDomain(hostname, allowedName)).toBe(expectedResult);
+  });
+});
+
+describe("'checkValidityPeriod' must work correctly", () => {
+  beforeAll(() => {
+    advanceTo(predefinedDate);
+  });
+
+  afterAll(() => {
+    clear();
+  });
+
+  test.each`
+    pem                      | expectedResult
+    ${exampleOrgLeaf}        | ${true}
+    ${expiredLeaf}           | ${false}
+    ${globalSignEccRootCAR4} | ${true}
+  `("should check the validity period of certificate and return $expectedResult", ({ pem, expectedResult }) => {
+    const cert = createPKICertificate(pem);
+    expect(checkValidityPeriod(cert)).toBe(expectedResult);
   });
 });
