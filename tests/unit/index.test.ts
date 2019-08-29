@@ -12,7 +12,8 @@ import {
   isRootCertificate,
   findDistinguishedName,
   removePemArmoring,
-  checkValidityPeriod,
+  isValidityPeriodCorrect,
+  isWeakEncryption,
 } from "../../src/utils";
 import {
   globalSignRootCA,
@@ -40,6 +41,7 @@ import {
   comodoRSACertificationAuthority,
   untrustedLeaf,
   untrustedIntermediate,
+  sha1EncryptionLeaf,
 } from "./testSamples/pem";
 import {
   globalSignRootCA as unarmoredGlobalSignRootCA,
@@ -166,6 +168,7 @@ describe("'findDistinguishedName' must work correctly", () => {
   `("should return $expectedDN", ({ pem, expectedDN }) => {
     // TODO: add tests with issuer
     const cert = createPKICertificate(pem);
+
     expect(findDistinguishedName(cert, "subject")).toBe(expectedDN);
   });
 });
@@ -253,7 +256,7 @@ describe("'isAllowedDomain' must work correctly", () => {
   });
 });
 
-describe("'checkValidityPeriod' must work correctly", () => {
+describe("'isValidityPeriodCorrect' must work correctly", () => {
   beforeAll(() => {
     advanceTo(predefinedDate);
   });
@@ -269,6 +272,18 @@ describe("'checkValidityPeriod' must work correctly", () => {
     ${globalSignEccRootCAR4} | ${true}
   `("should check the validity period of certificate and return $expectedResult", ({ pem, expectedResult }) => {
     const cert = createPKICertificate(pem);
-    expect(checkValidityPeriod(cert)).toBe(expectedResult);
+    expect(isValidityPeriodCorrect(cert)).toBe(expectedResult);
+  });
+});
+
+describe("'isWeakEncryption' must work correctly", () => {
+  test.each`
+    pem                   | expectedResult
+    ${sha1EncryptionLeaf} | ${true}
+    ${globalSignRootCA}   | ${true}
+    ${amazonRootCA1}      | ${false}
+  `("should check sha1 encryption algorithm and return $expectedResult", ({ pem, expectedResult }) => {
+    const cert = createPKICertificate(pem);
+    expect(isWeakEncryption(cert)).toBe(expectedResult);
   });
 });

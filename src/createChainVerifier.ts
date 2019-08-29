@@ -8,7 +8,7 @@ import {
   ICertificateVerifyProcRequest,
   IRequestCertificate,
 } from "./types";
-import { commonNameOid, subjectAlternativeNameOid, checkValidityPeriod } from "./utils";
+import { commonNameOid, subjectAlternativeNameOid, isValidityPeriodCorrect, isWeakEncryption } from "./utils";
 
 export function createChainVerifier(caStore: ICaStore): CertificateVerifier {
   return async (request: ICertificateVerifyProcRequest): Promise<VerificationResult> => {
@@ -50,7 +50,7 @@ export function createCertificatesChainFromRequest(request: ICertificateVerifyPr
 }
 
 export async function verifyChain(chain: Certificate[], caStore: ICaStore): Promise<VerificationResult> {
-  if (chain.every(cert => checkValidityPeriod(cert))) {
+  if (chain.every(cert => isValidityPeriodCorrect(cert) && !isWeakEncryption(cert))) {
     const lastIntermediateCert = chain[chain.length - 1];
     if (lastIntermediateCert) {
       const rootCaKey = findDistinguishedName(lastIntermediateCert, "issuer");

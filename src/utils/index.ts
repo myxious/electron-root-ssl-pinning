@@ -5,6 +5,7 @@ export const commonNameOid = "2.5.4.3";
 export const subjectAlternativeNameOid = "2.5.29.17";
 const organizationNameOid = "2.5.4.10";
 const organizationalUnitNameOid = "2.5.4.11";
+const sha1EncryptionOid = "1.2.840.113549.1.1.5";
 
 /**
  * Create PKI.JS Certificate instance by pem string
@@ -69,8 +70,15 @@ function convertPemToArrayBuffer(pemString: string) {
 /**
  * Checks the validity period of given certificate (either it's not expired or is not yet valid)
  */
-export function checkValidityPeriod(cert: Certificate) {
+export function isValidityPeriodCorrect(cert: Certificate) {
   const currentDate = new Date();
 
   return currentDate >= cert.notBefore.value && currentDate <= cert.notAfter.value;
+}
+
+/**
+ * Checks if given cert uses SHA-1 encryption
+ */
+export function isWeakEncryption(cert: Certificate) {
+  return cert.signature.algorithmId === sha1EncryptionOid || cert.signatureAlgorithm.algorithmId === sha1EncryptionOid;
 }

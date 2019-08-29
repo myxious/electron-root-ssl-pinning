@@ -1,7 +1,7 @@
 import flow from "lodash.flow";
 import { CreateRootCAVerifier, RootCertificatesList, ICaStore, CertificateVerifier, RootCertificates } from "./types";
 import { parsePemFile } from "./parsePemFile";
-import { createPKICertificate, isRootCertificate, findDistinguishedName, checkValidityPeriod } from "./utils";
+import { createPKICertificate, isRootCertificate, findDistinguishedName, isValidityPeriodCorrect } from "./utils";
 import { createChainVerifier } from "./createChainVerifier";
 
 export const createRootCaVerifier: CreateRootCAVerifier = rootCertificates =>
@@ -31,7 +31,7 @@ export function createCAStore(rootCertificatesList: RootCertificatesList): ICaSt
   try {
     return rootCertificatesList.reduce((dictionary: ICaStore, pem) => {
       const pkiCert = createPKICertificate(pem);
-      const isCorrectValidityPeriod = checkValidityPeriod(pkiCert);
+      const isCorrectValidityPeriod = isValidityPeriodCorrect(pkiCert);
       const pemFirstSymbols = pem.slice(27, 47).trim();
 
       if (!isCorrectValidityPeriod) {
